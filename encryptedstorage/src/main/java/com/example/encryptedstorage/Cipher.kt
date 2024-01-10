@@ -1,0 +1,24 @@
+package com.example.encryptedstorage
+
+import android.security.keystore.KeyProperties
+
+data class Cipher(
+    private val algorithm: String,
+    private val blockMode: String,
+    private val padding: String
+) {
+
+    data class Builder(
+        var algorithm: String = KeyProperties.KEY_ALGORITHM_AES,
+        var blockMode: String = KeyProperties.BLOCK_MODE_CBC,
+        var padding: String = KeyProperties.ENCRYPTION_PADDING_PKCS7
+    ) {
+        fun setAlgorithm(algorithm: String) = apply { this.algorithm = algorithm }
+
+        fun setBlockMode(blockMode: String) = apply { this.blockMode = blockMode }
+
+        fun setPadding(padding: String) = apply { this.padding = padding }
+
+        fun build() = Cipher(algorithm, blockMode, padding)
+    }
+}
