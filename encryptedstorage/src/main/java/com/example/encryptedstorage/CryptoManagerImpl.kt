@@ -9,15 +9,25 @@ import javax.crypto.Cipher
 import javax.crypto.KeyGenerator
 import javax.crypto.SecretKey
 import javax.crypto.spec.IvParameterSpec
+import com.example.encryptedstorage.Cipher as CipherConfig
 
-class CryptoManagerImpl: CryptoManager<com.example.encryptedstorage.Cipher.Builder> {
+class CryptoManagerImpl(
+    private val cipherConfig: CipherConfig? = null
+): CryptoManager {
 
+    private lateinit var cipher: CipherConfig
     private lateinit var algorithm: String
     private lateinit var blockMode: String
     private lateinit var padding: String
     private lateinit var transformation: String
 
-    override fun setupEncryptionKeys(cipher: com.example.encryptedstorage.Cipher.Builder) {
+    init {
+        setupEncryptionKeys()
+    }
+
+    override fun setupEncryptionKeys() {
+        cipher = cipherConfig?.let { return@let it } ?: CipherConfig.Builder().build()
+
         algorithm = cipher.algorithm
         blockMode = cipher.blockMode
         padding = cipher.padding

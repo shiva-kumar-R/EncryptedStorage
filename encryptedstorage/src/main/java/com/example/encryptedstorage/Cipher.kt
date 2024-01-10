@@ -2,10 +2,10 @@ package com.example.encryptedstorage
 
 import android.security.keystore.KeyProperties
 
-data class Cipher(
-    private val algorithm: String,
-    private val blockMode: String,
-    private val padding: String
+class Cipher private constructor(
+    val algorithm: String,
+    val blockMode: String,
+    val padding: String
 ) {
 
     data class Builder(
