@@ -14,5 +14,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "EncryptedStorage"
-include(":app")
- 
+include(":encryptedstorage")
