@@ -50,7 +50,7 @@ afterEvaluate {
             create<MavenPublication>("release"){
                 from(components.findByName("release"))
                 groupId = "com.github.shiva-kumar-R"
-                artifactId = "swipeablecard"
+                artifactId = "encryptedstorage"
                 version = "1.0.0"
             }
         }
