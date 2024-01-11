@@ -51,7 +51,7 @@ afterEvaluate {
                 from(components.findByName("release"))
                 groupId = "com.github.shiva-kumar-R"
                 artifactId = "encryptedstorage"
-                version = "1.0.2"
+                version = "1.3.0"
             }
         }
     }
