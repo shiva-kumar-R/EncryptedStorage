@@ -1,9 +1,16 @@
 # Encrypted Storage
-Android Library for encryption/decryption of data
+Library for encryption/decryption of data storage.
 
 ## How to install via GRADLE
 
-- Add the following code in your system.gradle file:
+- Add the following dependencies:
+```
+dependencies {
+   implementation 'com.github.shiva-kumar-R:encryptedstorage:Tag'
+}
+```
+
+- The library is hosted in Jitpack. So, add the maven url in your system.gradle file if it not already added:
 ```
 dependencyResolutionManagement {
     repositories {
@@ -13,30 +20,32 @@ dependencyResolutionManagement {
 }
 ```
 
-- Add the following dependencies:
-```
-dependencies {
-   implementation 'com.github.shiva-kumar-R:encryptedstorage:Tag'
-}
-```
-
-## How to use
+## Usage
 
 - Create an instance of CryptoManagerImpl.
 
 ```
-val cryptoManager = CryptoManagerImpl(cipherConfig)
+val cryptoManager = CryptoManagerImpl()
+
+OR
+
+val cipherConfig = Cipher.Builder()
+                         .setAlgorithm(KeyProperties.KEY_ALGORITHM_HMAC_SHA256)
+                         .setBlockMode(KeyProperties.BLOCK_MODE_CTR)
+                         .setPadding(KeyProperties.ENCRYPTION_PADDING_NONE)
+                         .build()
+val cryptoManager = CryptoManagerImpl(cipherConfig) //cipherConfig is optional parameter
 ```
 
-- It takes cipherConfig as optional parameter by which you can update the configuration of encryption/decryption process.
-- Using config you can set Algorithm, BlockMode and Padding.
+- CryptoManagerImpl takes cipherConfig as optional parameter by which you can update the configuration of encryption/decryption process.
+- Using config you can change Algorithm, BlockMode and Padding. Config is in builder design. Example -
 
 ```
-Default values are -
+Datatype and Default values are -
 
-Algorithm = KeyProperties.KEY_ALGORITHM_AES,
-BlockMode = KeyProperties.BLOCK_MODE_CBC,
-Padding = KeyProperties.ENCRYPTION_PADDING_PKCS7
+Algorithm: String = KeyProperties.KEY_ALGORITHM_AES,
+BlockMode: String = KeyProperties.BLOCK_MODE_CBC,
+Padding: String = KeyProperties.ENCRYPTION_PADDING_PKCS7
 ```
 
 - This library can be used for generic encryption/decryption of local data storage/can be used with datastore.
